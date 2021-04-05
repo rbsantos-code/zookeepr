@@ -78,6 +78,23 @@ app.get('/api/animals', (req, res) => {
     res.json(results)
 });
 
+// add validation function - 11.2.6
+function validateAnimal(animal) {
+    if (!animal.name || typeof animal.name !== 'string') {
+        return false;
+    }
+    if (!animal.species || typeof animal.species !== 'string') {
+        return false;
+    }
+    if (!animal.diet || typeof animal.diet !== 'string') {
+        return false;
+    }
+    if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
+        return false;
+    }
+    return true;
+}
+
 // add (parameter) route - This should only return a single animal
 app.get('/api/animals/:id', (req, res) => {
     const result = findById(req.params.id, animals);
@@ -89,16 +106,21 @@ app.get('/api/animals/:id', (req, res) => {
 });
 
 // get user POST data
-app.post('/api/animals', (req, res) => {
-    // rec.body is where our incoming content will be 
+app.post('/api/animals', (req, res) => { // rec.body is where our incoming content will be 
     
     // set id based on what the next index of the array will be
     req.body.id = animals.length.toString();
 
-    // add animal to json file  and animals array in this function
-    const animal = createNewAnimal(req.body, animals);
+    // if any data in req.body is incorrect, sent 400 error back
+    if (!validateAnimal(req.body)) {
+        res.status(400).send('The animal is not properly formatted');
+    } else {
+        // add animal to json file  and animals array in this function
+        const animal = createNewAnimal(req.body, animals);
 
-    res.json(req.body); // using this to send back data to client
+        res.json(animal); // using this to send back data to client
+    }
+
 });
 
 // add port
