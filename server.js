@@ -60,7 +60,11 @@ app.get('/api/animals', (req, res) => {
 // add (parameter) route - This should only return a single animal
 app.get('/api/animals/:id', (req, res) => {
     const result = findById(req.params.id, animals);
-    res.json(result);
+    if (result) {
+        res.json(result);
+    } else {
+        res.send(404);
+    }
 });
 
 // add port
