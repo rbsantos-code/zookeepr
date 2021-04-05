@@ -42,14 +42,25 @@ function filterByQuery(query, animalsArray) {
 }
 
 
+// parameter function
+function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+}
 
-// add the route
+// add the route (query)
 app.get('/api/animals', (req, res) => {
     let results = animals;
     if (req.query) { // req.query as an argument and filter through the animals accordingly - 11.1.5
         results = filterByQuery(req.query, results);
     }
     res.json(results)
+});
+
+// add (parameter) route - This should only return a single animal
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    res.json(result);
 });
 
 // add port
