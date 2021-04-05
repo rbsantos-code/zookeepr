@@ -54,6 +54,15 @@ function findById(id, animalsArray) {
     return result;
 }
 
+// function to take data and adding to animals JSON - 11.2.6
+function createNewAnimal(body, animalsArray) {
+    console.log(body);
+    // our function's main code will go here!
+
+    // return finished code to post route for response
+    return body;
+}
+
 // add the route (query)
 app.get('/api/animals', (req, res) => {
     let results = animals;
