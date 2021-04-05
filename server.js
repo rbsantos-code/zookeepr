@@ -2,6 +2,12 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+// parse incoming string or array data - 11.2.5
+app.use(express.urlencoded({ extended: true }));
+
+// parse incoming JSON data - 11.2.5
+app.use(express.json());
+
 // create a route to request data from
 const { animals } = require('./data/animals.json')
 
@@ -65,6 +71,13 @@ app.get('/api/animals/:id', (req, res) => {
     } else {
         res.send(404);
     }
+});
+
+// get user POST data
+app.post('/api/animals', (req, res) => {
+    // rec.body is where our incoming content will be 
+    console.log(req.body); // req.body is where we can access that data on the server side - 11.2.3
+    res.json(req.body); // using this to send back data to client
 });
 
 // add port
