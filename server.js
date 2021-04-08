@@ -123,6 +123,11 @@ app.post('/api/animals', (req, res) => { // rec.body is where our incoming conte
 
 });
 
+// add route for HTML - 11.3.4
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepr-public/index.html'));
+});
+
 // add port
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
