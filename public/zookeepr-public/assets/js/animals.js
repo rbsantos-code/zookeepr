@@ -31,7 +31,7 @@ const getAnimals = (formData = {}) => {
 
   console.log(queryUrl);
 
-  // add fetch 11.3.7
+  // add fetch GET function 11.3.7
   fetch(queryUrl)
     .then(response => {
       if (!response.ok) {
