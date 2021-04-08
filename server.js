@@ -141,6 +141,11 @@ app.get('/zookeepers', (req, res) => {
     res.sendFile(path.join(__dirname, './public/zookeepr-public/zookeepers.html'));
 });
 
+// add route for request that does not exist (wildcard)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, ',/public/zookeepr-public/index.html'));
+});
+
 // add port
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
