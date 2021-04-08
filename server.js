@@ -4,6 +4,9 @@ const app = express();
 const fs = require('fs');
 const path = require('path');
 
+// make front end files available to server - 11.3.4
+app.use(express.static('public/zookeepr-public'));
+
 // parse incoming string or array data - 11.2.5
 app.use(express.urlencoded({ extended: true }));
 
