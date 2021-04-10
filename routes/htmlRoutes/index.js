@@ -9,17 +9,17 @@ router.get('/', (req, res) => {
 
 // add route for animals html - 11.3.6
 router.get('/animals', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/zookeepr-public/animals.html'));
+    res.sendFile(path.join(__dirname, '../../public/zookeepr-public/animals.html'));
 });
 
 // add route for zookeepers html - 11.3.6
 router.get('/zookeepers', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/zookeepr-public/zookeepers.html'));
+    res.sendFile(path.join(__dirname, '../../public/zookeepr-public/zookeepers.html'));
 });
 
 // add route for request that does not exist (wildcard)
 router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, ',/public/zookeepr-public/index.html'));
+    res.sendFile(path.join(__dirname, '../../public/zookeepr-public/index.html'));
 });
 
 
